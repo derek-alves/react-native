@@ -18,6 +18,12 @@ import {
 } from "./styles";
 
 const Dashboard: React.FC = () => {
+  const data = {
+    title: "Desenvolvimento de site",
+    amount: "R$ 12.000,00",
+    category: { name: "Vendas", icon: "dollar-sign" },
+    date: "13/04/2020",
+  };
   return (
     <Container>
       <Header>
@@ -58,7 +64,7 @@ const Dashboard: React.FC = () => {
       </HighLightCards>
       <Transactions>
         <Title>Listagem</Title>
-        <TransactionCard />
+        <TransactionCard data={data} />
       </Transactions>
     </Container>
   );

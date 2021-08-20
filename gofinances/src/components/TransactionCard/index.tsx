@@ -1,5 +1,6 @@
 import React from "react";
 import { View } from "react-native";
+import { interpolateColor } from "react-native-reanimated";
 
 import {
   Container,
@@ -12,19 +13,28 @@ import {
   Date,
 } from "./styles";
 
-const TransactionCard: React.FC = () => {
+interface Category {
+  name: string;
+  icon: string;
+}
+
+interface Props {
+  data: { title: string; amount: string; category: Category; date: string };
+}
+
+const TransactionCard: React.FC<Props> = ({ data }: Props) => {
   return (
     <Container>
-      <Title>Desevolvimento de site</Title>
+      <Title>{data.title}</Title>
 
-      <Amount>R$ 12.000,00</Amount>
+      <Amount>{data.amount}</Amount>
 
       <Footer>
         <Category>
           <Icon name="dollar-sign" />
-          <CategoryName>Vendas</CategoryName>
+          <CategoryName>{data.category.name}</CategoryName>
         </Category>
-        <Date>13/04/2020</Date>
+        <Date>{data.date}</Date>
       </Footer>
     </Container>
   );
