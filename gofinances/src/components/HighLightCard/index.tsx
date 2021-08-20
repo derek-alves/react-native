@@ -11,17 +11,35 @@ import {
   LastTransaction,
 } from "./styles";
 
-const HighLightCard: React.FC = () => {
+interface Props {
+  title: string;
+  amount: string;
+  lasTransaction: string;
+  type: "up" | "down" | "total";
+}
+
+const icon = {
+  up: "arrow-up-circle",
+  down: "arrow-down-circle",
+  total: "dollar-sign",
+};
+
+const HighLightCard: React.FC<Props> = ({
+  type,
+  title,
+  amount,
+  lasTransaction,
+}: Props) => {
   return (
-    <Container>
+    <Container type={type}>
       <Header>
-        <Title>Entrada</Title>
-        <Icon name="arrow-up-circle" />
+        <Title type={type}>{title}</Title>
+        <Icon name={icon[type]} type={type} />
       </Header>
 
       <Footer>
-        <Amount>R$ 17.400,00</Amount>
-        <LastTransaction>Última entrada dia 13 de abril</LastTransaction>
+        <Amount type={type}>{amount}</Amount>
+        <LastTransaction type={type}>{lasTransaction}</LastTransaction>
       </Footer>
     </Container>
   );
